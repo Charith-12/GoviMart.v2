@@ -17,18 +17,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 
-public class MainCategoryCardAdapter extends RecyclerView.Adapter<MainCategoryCardAdapter.MainCategoryCardViewHolder> {
+public class AddCategoryCardAdapter extends RecyclerView.Adapter<AddCategoryCardAdapter.AddCategoryCardViewHolder> {
 
     private ArrayList<MainCategoryCard> mCategoryList;
     private Context context;
 
-    public class MainCategoryCardViewHolder extends RecyclerView.ViewHolder {
+    public class AddCategoryCardViewHolder extends RecyclerView.ViewHolder {
         public ImageView mImageView;
         public TextView mTextView1;
         private Context context1;
 
 
-        public MainCategoryCardViewHolder(View itemView, Context ctx) {
+        public AddCategoryCardViewHolder(View itemView, Context ctx) {
             super(itemView);
             this.context1 = ctx;
 
@@ -42,8 +42,9 @@ public class MainCategoryCardAdapter extends RecyclerView.Adapter<MainCategoryCa
 
                     //
                     String cardText = mTextView1.getText().toString();
+                    v.getContext().startActivity(new Intent(v.getContext(), AddNewItemActivity.class).putExtra("SELECTED_CATEGORY", cardText));
 
-                    if(cardText.equalsIgnoreCase("Vegetables")){
+                    /*if(cardText.equalsIgnoreCase("Vegetables")){
 
                         // Old intent
                         //v.getContext().startActivity(new Intent(v.getContext(), ShowVegetablesActivity.class));
@@ -67,7 +68,7 @@ public class MainCategoryCardAdapter extends RecyclerView.Adapter<MainCategoryCa
                     }
 
                     //
-                    //TODO activities & Create intents for other cards too
+                    */
 
                 }
             });
@@ -76,19 +77,19 @@ public class MainCategoryCardAdapter extends RecyclerView.Adapter<MainCategoryCa
     }
 
     //Constructor
-    public MainCategoryCardAdapter(ArrayList<com.example.govimart.MainCategoryCard> categoryList, Context context) {
+    public AddCategoryCardAdapter(ArrayList<com.example.govimart.MainCategoryCard> categoryList, Context context) {
         mCategoryList = categoryList;
         this.context = context;
     }
 
     @Override
-    public MainCategoryCardViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public AddCategoryCardViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_category_card, parent, false);
-        MainCategoryCardViewHolder categoryViewHolder = new MainCategoryCardViewHolder(v, context);
+        AddCategoryCardViewHolder categoryViewHolder = new AddCategoryCardViewHolder(v, context);
         return categoryViewHolder;
     }
     @Override
-    public void onBindViewHolder(MainCategoryCardViewHolder holder, int position) {
+    public void onBindViewHolder(AddCategoryCardViewHolder holder, int position) {
         com.example.govimart.MainCategoryCard currentItem = mCategoryList.get(position);
         holder.mImageView.setImageResource(currentItem.getImageResource());
         holder.mTextView1.setText(currentItem.getText1());

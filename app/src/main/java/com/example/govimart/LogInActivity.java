@@ -96,12 +96,22 @@ public class LogInActivity extends AppCompatActivity {
     }
 
     public void  LoginUser(){
+
+        /*
+        Intent intent = new  Intent(LogInActivity.this,MainActivity.class);
+        startActivity(intent);
+        */
+
+        /**/
         if (ValidateDataInput()){
             UserLogIn();
         }
+
+         /**/
     }
 
     public void UserLogIn(){
+
         password = Password.getText().toString().trim();
         email = Email.getText().toString().trim();
         mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
